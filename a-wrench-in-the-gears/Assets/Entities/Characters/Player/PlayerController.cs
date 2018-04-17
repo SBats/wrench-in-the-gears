@@ -186,5 +186,8 @@ public class PlayerController : MonoBehaviour {
 
   private void OnCollision(RaycastHit2D hit) {
     // Debug.Log("collision: " + hit.collider.tag);
+    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LAYER_NAME")) {
+      Debug.Log("Die!");
+    }
   }
 }
