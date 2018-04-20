@@ -118,45 +118,53 @@ public class Controller2D : RaycastController {
 		for (int i = 0; i < this.horizontalRayCount; i++) {
 			Vector2 rayOrigin = (directionX == -1) ? this.raycastOrigins.bottomLeft : this.raycastOrigins.bottomRight;
 			rayOrigin += Vector2.up * (this.horizontalRaySpacing * i);
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, this.hitMask);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, this.skinWidth, this.triggerMask);
+
+			Debug.DrawRay(rayOrigin, Vector2.right * directionX * this.skinWidth, Color.red);
+
+			if (hit) {
+				this.onTriggerHit.Invoke(hit);
+			}
+		}
+
+		for (int i = 0; i < this.horizontalRayCount; i++) {
+			Vector2 rayOrigin = (directionX == -1) ? this.raycastOrigins.bottomLeft : this.raycastOrigins.bottomRight;
+			rayOrigin += Vector2.up * (this.horizontalRaySpacing * i);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, this.collisionMask);
 
 			Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
 			if (hit) {
 
-				if (this.triggerMask == (this.triggerMask | (1 << hit.collider.gameObject.layer))) {
-					this.onTriggerHit.Invoke(hit);
-				} else {
-					this.onColliderHit.Invoke(hit);
+				this.onColliderHit.Invoke(hit);
 
-					if (hit.distance == 0 || hit.collider.tag == "OneWay") continue;
+				if (hit.distance == 0 || hit.collider.tag == "OneWay") continue;
 
-					float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
-					if (i == 0 && slopeAngle <= maxSlopeAngle) {
-						if (this.collisions.descendingSlope) {
-							this.collisions.descendingSlope = false;
-							moveAmount = this.collisions.moveAmountOld;
-						}
-						float distanceToSlopeStart = 0;
-						if (slopeAngle != this.collisions.slopeAngleOld) {
-							distanceToSlopeStart = hit.distance - this.skinWidth;
-							moveAmount.x -= distanceToSlopeStart * directionX;
-						}
-						ClimbSlope(ref moveAmount, slopeAngle, hit.normal);
-						moveAmount.x += distanceToSlopeStart * directionX;
+				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+				if (i == 0 && slopeAngle <= maxSlopeAngle) {
+					if (this.collisions.descendingSlope) {
+						this.collisions.descendingSlope = false;
+						moveAmount = this.collisions.moveAmountOld;
+					}
+					float distanceToSlopeStart = 0;
+					if (slopeAngle != this.collisions.slopeAngleOld) {
+						distanceToSlopeStart = hit.distance - this.skinWidth;
+						moveAmount.x -= distanceToSlopeStart * directionX;
+					}
+					ClimbSlope(ref moveAmount, slopeAngle, hit.normal);
+					moveAmount.x += distanceToSlopeStart * directionX;
+				}
+
+				if (!this.collisions.climbingSlope || slopeAngle > this.maxSlopeAngle) {
+					moveAmount.x = (hit.distance - this.skinWidth) * directionX;
+					rayLength = hit.distance;
+
+					if (this.collisions.climbingSlope) {
+						moveAmount.y = Mathf.Tan(this.collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(moveAmount.x);
 					}
 
-					if (!this.collisions.climbingSlope || slopeAngle > this.maxSlopeAngle) {
-						moveAmount.x = (hit.distance - this.skinWidth) * directionX;
-						rayLength = hit.distance;
-
-						if (this.collisions.climbingSlope) {
-							moveAmount.y = Mathf.Tan(this.collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(moveAmount.x);
-						}
-
-						collisions.left = directionX == -1;
-						collisions.right = directionX == 1;
-					}
+					collisions.left = directionX == -1;
+					collisions.right = directionX == 1;
 				}
 			}
 		}
@@ -169,41 +177,48 @@ public class Controller2D : RaycastController {
 		for (int i = 0; i < this.verticalRayCount; i++) {
 			Vector2 rayOrigin = (directionY == -1) ? this.raycastOrigins.bottomLeft : this.raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (this.verticalRaySpacing * i + moveAmount.x);
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, this.hitMask);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, this.skinWidth, this.triggerMask);
+
+			Debug.DrawRay(rayOrigin, Vector2.up * directionY * this.skinWidth, Color.red);
+
+			if (hit) {
+				this.onTriggerHit.Invoke(hit);
+			}
+		}
+
+		for (int i = 0; i < this.verticalRayCount; i++) {
+			Vector2 rayOrigin = (directionY == -1) ? this.raycastOrigins.bottomLeft : this.raycastOrigins.topLeft;
+			rayOrigin += Vector2.right * (this.verticalRaySpacing * i + moveAmount.x);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, this.collisionMask);
 
 			Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
 			if (hit) {
+				this.onColliderHit.Invoke(hit);
 
-				if (this.triggerMask == (this.triggerMask | (1 << hit.collider.gameObject.layer))) {
-					this.onTriggerHit.Invoke(hit);
-				} else {
-					this.onColliderHit.Invoke(hit);
-
-					if (hit.collider.tag == "OneWay") {
-						if (directionY == 1 || hit.distance == 0) {
-							continue;
-						}
-						if (this.collisions.fallingThroughPlatform) {
-							continue;
-						}
-						if (playerInput.y == -1) {
-							this.collisions.fallingThroughPlatform = true;
-							Invoke("ResetFallingThroughPlatform", .5f);
-							continue;
-						}
+				if (hit.collider.tag == "OneWay") {
+					if (directionY == 1 || hit.distance == 0) {
+						continue;
 					}
-
-					moveAmount.y = (hit.distance - this.skinWidth) * directionY;
-					rayLength = hit.distance;
-
-					if (this.collisions.climbingSlope) {
-						moveAmount.x = moveAmount.y / Mathf.Tan(this.collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(moveAmount.y);
+					if (this.collisions.fallingThroughPlatform) {
+						continue;
 					}
-
-					collisions.bellow = directionY == -1;
-					collisions.above = directionY == 1;
+					if (playerInput.y == -1) {
+						this.collisions.fallingThroughPlatform = true;
+						Invoke("ResetFallingThroughPlatform", .5f);
+						continue;
+					}
 				}
+
+				moveAmount.y = (hit.distance - this.skinWidth) * directionY;
+				rayLength = hit.distance;
+
+				if (this.collisions.climbingSlope) {
+					moveAmount.x = moveAmount.y / Mathf.Tan(this.collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(moveAmount.y);
+				}
+
+				collisions.bellow = directionY == -1;
+				collisions.above = directionY == 1;
 			}
 		}
 
@@ -211,7 +226,7 @@ public class Controller2D : RaycastController {
 			float directionX = Mathf.Sign(moveAmount.x);
 			rayLength = Mathf.Abs(moveAmount.x) + skinWidth;
 			Vector2 rayOrigin = ((directionX == -1) ? this.raycastOrigins.bottomLeft : this.raycastOrigins.bottomRight) + Vector2.up * moveAmount.y;
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, this.hitMask);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, this.collisionMask);
 
 			if (hit) {
 				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
@@ -240,8 +255,8 @@ public class Controller2D : RaycastController {
 
 	private void DescendSlope(ref Vector2 moveAmount) {
 
-		RaycastHit2D maxSlopeHitLeft = Physics2D.Raycast(this.raycastOrigins.bottomLeft, Vector2.down, Mathf.Abs(moveAmount.y) + this.skinWidth, this.hitMask);
-		RaycastHit2D maxSlopeHitRight = Physics2D.Raycast(this.raycastOrigins.bottomRight, Vector2.down, Mathf.Abs(moveAmount.y) + this.skinWidth, this.hitMask);
+		RaycastHit2D maxSlopeHitLeft = Physics2D.Raycast(this.raycastOrigins.bottomLeft, Vector2.down, Mathf.Abs(moveAmount.y) + this.skinWidth, this.collisionMask);
+		RaycastHit2D maxSlopeHitRight = Physics2D.Raycast(this.raycastOrigins.bottomRight, Vector2.down, Mathf.Abs(moveAmount.y) + this.skinWidth, this.collisionMask);
 
 		if (maxSlopeHitLeft ^ maxSlopeHitRight) {
 			SlideDownMaxSlope(maxSlopeHitLeft, ref moveAmount);
@@ -251,29 +266,24 @@ public class Controller2D : RaycastController {
 		if (!this.collisions.slidingDownMaxSlope) {
 			float directionX = Mathf.Sign(moveAmount.x);
 			Vector2 rayOrigin = (directionX == -1) ? this.raycastOrigins.bottomRight : this.raycastOrigins.bottomLeft;
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, Mathf.Infinity, this.hitMask);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, Mathf.Infinity, this.collisionMask);
 
 			if (hit) {
+				this.onColliderHit.Invoke(hit);
 
-				if (this.triggerMask == (this.triggerMask | (1 << hit.collider.gameObject.layer))) {
-					this.onTriggerHit.Invoke(hit);
-				} else {
-					this.onColliderHit.Invoke(hit);
+				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+				if (slopeAngle != 0 && slopeAngle <= this.maxSlopeAngle) {
+					if (Mathf.Sign(hit.normal.x) == directionX) {
+						if (hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(moveAmount.x)) {
+							float moveDistance = Mathf.Abs(moveAmount.x);
+							float descendMoveAmountY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+							moveAmount.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(moveAmount.x);
+							moveAmount.y -= descendMoveAmountY;
 
-					float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
-					if (slopeAngle != 0 && slopeAngle <= this.maxSlopeAngle) {
-						if (Mathf.Sign(hit.normal.x) == directionX) {
-							if (hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(moveAmount.x)) {
-								float moveDistance = Mathf.Abs(moveAmount.x);
-								float descendMoveAmountY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
-								moveAmount.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(moveAmount.x);
-								moveAmount.y -= descendMoveAmountY;
-
-								this.collisions.slopeAngle = slopeAngle;
-								this.collisions.descendingSlope = true;
-								this.collisions.bellow = true;
-								this.collisions.slopeNormal = hit.normal;
-							}
+							this.collisions.slopeAngle = slopeAngle;
+							this.collisions.descendingSlope = true;
+							this.collisions.bellow = true;
+							this.collisions.slopeNormal = hit.normal;
 						}
 					}
 				}
@@ -297,4 +307,9 @@ public class Controller2D : RaycastController {
 	private void ResetFallingThroughPlatform() {
 		this.collisions.fallingThroughPlatform = false;
 	}
+
+	private bool IsInLayerMask(int layer, LayerMask layermask) {
+		return layermask == (layermask | (1 << layer));
+	}
 }
+

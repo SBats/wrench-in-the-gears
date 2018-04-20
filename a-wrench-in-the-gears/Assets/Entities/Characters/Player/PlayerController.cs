@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
   private SpriteController.PlayerState playerState;
   private UnityAction<RaycastHit2D> collisionsActions;
   private UnityAction<RaycastHit2D> triggerActions;
+  private CheckpointController respawnPoint;
 
   private void Start() {
     this.controller = GetComponent<Controller2D>();
@@ -101,6 +102,18 @@ public class PlayerController : MonoBehaviour {
 
   public void OnJumpInputUp() {
     this.cancelJump = true;
+  }
+
+  public void Respawn() {
+    transform.position = this.respawnPoint.transform.position;
+  }
+
+  public void UpdateRespawnPoint(CheckpointController newPoint) {
+    this.respawnPoint = newPoint;
+  }
+
+  public void Die() {
+    this.Respawn();
   }
 
   private void CalculateVelocity() {
@@ -176,18 +189,25 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
-  private float ComputeGravity ()	{
+  private float ComputeGravity()	{
 		return (-2 * this.maxJumpHeight * Mathf.Pow(this.moveSpeed, 2)) / Mathf.Pow(this.distanceToJumpApex, 2);
 	}
 
   private void OnTrigger(RaycastHit2D hit) {
-    // Debug.Log("Trigger: " + hit.collider.tag);
+    Debug.Log("Trigger: " + hit.collider.tag);
+    if (hit.collider.tag == "Checkpoint") {
+      CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
+      if (checkpoint.active) {
+        checkpoint.Disable();
+        this.UpdateRespawnPoint(checkpoint);
+      }
+    }
+    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
+      Die();
+    }
   }
 
   private void OnCollision(RaycastHit2D hit) {
-    // Debug.Log("collision: " + hit.collider.tag);
-    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("LAYER_NAME")) {
-      Debug.Log("Die!");
-    }
+    Debug.Log("collision: " + hit.collider.tag);
   }
 }
