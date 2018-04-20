@@ -209,7 +209,10 @@ public class PlayerController : MonoBehaviour {
       }
     }
     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
-      Die();
+      DangerController danger = hit.collider.gameObject.GetComponent<DangerController>();
+      if (danger.active) {
+        Die();
+      }
     }
     if (hit.collider.tag == "Lever" && this.actionRequested) {
       hit.collider.gameObject.GetComponent<LeverController>().Toggle();
