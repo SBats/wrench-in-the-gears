@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour {
   private int wallDirX;
   private int currentJump;
   private bool jumpRequested = false;
+  private bool actionRequested = false;
   private bool cancelJump = false;
   private SpriteController.PlayerState playerState;
   private UnityAction<RaycastHit2D> collisionsActions;
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour {
 
     this.jumpRequested = false;
     this.cancelJump = false;
+    this.actionRequested = false;
 
     this.playerState.collisions = this.controller.collisions;
     this.playerState.velocity = this.velocity;
@@ -98,6 +100,10 @@ public class PlayerController : MonoBehaviour {
 
   public void OnJumpInputDown() {
     this.jumpRequested = true;
+  }
+
+  public void OnActionInputDown() {
+    this.actionRequested = true;
   }
 
   public void OnJumpInputUp() {
@@ -194,7 +200,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
   private void OnTrigger(RaycastHit2D hit) {
-    Debug.Log("Trigger: " + hit.collider.tag);
+    // Debug.Log("Trigger: " + hit.collider.tag);
     if (hit.collider.tag == "Checkpoint") {
       CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
       if (checkpoint.active) {
@@ -205,9 +211,12 @@ public class PlayerController : MonoBehaviour {
     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
       Die();
     }
+    if (hit.collider.tag == "Lever" && this.actionRequested) {
+      hit.collider.gameObject.GetComponent<LeverController>().Toggle();
+    }
   }
 
   private void OnCollision(RaycastHit2D hit) {
-    Debug.Log("collision: " + hit.collider.tag);
+    // Debug.Log("collision: " + hit.collider.tag);
   }
 }
