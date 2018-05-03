@@ -7,6 +7,7 @@ public class SpriteController : MonoBehaviour {
 	public struct PlayerState {
 		public Controller2D.CollisionInfo collisions;
 		public bool grounded;
+		public bool dying;
 		public Vector2 velocity;
 		public bool wallSliding;
 		public Vector2 input;
@@ -39,6 +40,7 @@ public class SpriteController : MonoBehaviour {
 	private void updateAnimatorParameters (PlayerState playerState) {
 		this.animator.SetBool("grounded", playerState.collisions.bellow);
 		this.animator.SetBool("wall_sliding", playerState.wallSliding);
+		this.animator.SetBool("dying", playerState.dying);
 		this.animator.SetFloat("x_velocity", playerState.velocity.x);
 		this.animator.SetFloat("y_velocity", playerState.velocity.y);
 		this.animator.SetFloat("absolute_x_velocity", Mathf.Abs(playerState.velocity.x));

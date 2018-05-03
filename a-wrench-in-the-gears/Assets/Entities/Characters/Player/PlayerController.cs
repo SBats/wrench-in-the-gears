@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void Respawn() {
+    this.playerState.dying = false;
     transform.position = this.respawnPoint.transform.position;
   }
 
@@ -119,6 +120,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void Die() {
+    this.playerState.dying = true;
     this.Respawn();
   }
 
