@@ -1,16 +1,12 @@
 fileFormatVersion: 2
-guid: 15fd7f43b99374702b840b8bc0a035f4
-timeCreated: 1525313748
+guid: 7cd76729bf00e48319d3483df932d077
+timeCreated: 1525398787
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: spikes_0
-    21300002: spikes_1
-    21300004: spikes_2
-    21300006: spikes_3
-    21300008: spikes_4
-    21300010: spikes_5
-    21300012: spikes_6
+    21300000: lever_0
+    21300002: lever_1
+    21300004: lever_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -117,91 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spikes_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -2.0436969, y: -6.03878}
-        - {x: -4.543083, y: -1.8334007}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 4.5222616, y: -1.8346329}
-        - {x: 2.5439043, y: -5.915062}
-        - {x: 0.5026636, y: -1.8321724}
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spikes_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 0.5389862, y: -0.8734131}
-        - {x: -1.9603977, y: -4.9971313}
-        - {x: -4.5014343, y: -0.91669846}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 4.543085, y: -0.8750534}
-        - {x: 2.5430832, y: -4.996723}
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spikes_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -1.9603977, y: -5.997135}
-        - {x: -4.5014343, y: -1.8334007}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 4.5169487, y: -1.8324928}
-        - {x: 2.5022535, y: -5.9567146}
-        - {x: 0.4610138, y: -1.8738213}
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spikes_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -1.9595814, y: -8}
-        - {x: -4.4597855, y: -3.9991798}
-        - {x: -6.2090683, y: -8}
-        - {x: 6.1257687, y: -8}
-        - {x: 4.552677, y: -3.891468}
-        - {x: 2.5439034, y: -8}
-        - {x: 0.5018425, y: -3.9571228}
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spikes_4
+      name: lever_0
       rect:
         serializedVersion: 2
         x: 0
@@ -211,20 +123,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 1.4823599, y: -8}
-        - {x: 0.4614439, y: -6.057007}
-        - {x: -0.45031404, y: -8}
-        - {x: -3.567729, y: -8}
-        - {x: -4.4962234, y: -5.9642467}
-        - {x: -5.5330553, y: -8}
-        - {x: 5.5688076, y: -8}
-        - {x: 4.4962234, y: -5.892742}
-        - {x: 3.5330553, y: -8}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spikes_5
+      name: lever_1
       rect:
         serializedVersion: 2
         x: 16
@@ -234,15 +137,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 5.047512, y: -8}
-        - {x: 4.971323, y: -8}
-        - {x: -4.9619045, y: -8}
-        - {x: -4.980982, y: -8}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spikes_6
+      name: lever_2
       rect:
         serializedVersion: 2
         x: 0
@@ -252,16 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 3.0081186, y: -8}
-        - {x: 2.0363073, y: -8}
-        - {x: 0.4975586, y: -4.051461}
-        - {x: -1.0673428, y: -8}
-        - {x: -2.92276, y: -8}
-        - {x: -4.501092, y: -4.0336714}
-        - {x: -5.975838, y: -8}
-        - {x: 6.0625877, y: -8}
-        - {x: 4.479501, y: -3.9904904}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
     outline: []

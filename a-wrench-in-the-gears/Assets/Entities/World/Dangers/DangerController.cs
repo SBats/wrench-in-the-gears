@@ -9,6 +9,11 @@ public class DangerController : MonoBehaviour {
 	public LeverController lever;
 
 	private UnityAction<bool> statusUpdateActions;
+	private Animator animator;
+
+	private void Awake() {
+		this.animator = GetComponent<Animator>();
+	}
 
 	private void Start() {
 		this.statusUpdateActions += this.UpdateStatus;
@@ -17,13 +22,16 @@ public class DangerController : MonoBehaviour {
 
 	public void UpdateStatus(bool status) {
 		this.active = status;
+		this.animator.SetBool("active", status);
 	}
 
 	public void Enable() {
 		this.active = true;
+		this.animator.SetBool("active", true);
 	}
 
 	public void Disable() {
 		this.active = false;
+		this.animator.SetBool("active", false);
 	}
 }

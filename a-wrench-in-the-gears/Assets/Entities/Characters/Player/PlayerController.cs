@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour {
     }
     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
       DangerController danger = hit.collider.gameObject.GetComponent<DangerController>();
-      if (danger.active) {
+      if (!danger || danger.active) {
         Die();
       }
     }
