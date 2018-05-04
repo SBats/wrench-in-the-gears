@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -209,6 +210,10 @@ public class PlayerController : MonoBehaviour {
         checkpoint.Disable();
         this.UpdateRespawnPoint(checkpoint);
       }
+    }
+    if (hit.collider.tag == "End") {
+      CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
       DangerController danger = hit.collider.gameObject.GetComponent<DangerController>();
