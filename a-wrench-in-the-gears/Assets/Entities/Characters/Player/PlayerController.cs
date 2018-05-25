@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour {
   private void HandleWallSliding() {
     this.wallDirX = this.controller.collisions.left ? -1 : 1;
     this.wallSliding = false;
-    if ((this.controller.collisions.left || this.controller.collisions.right) && !this.controller.collisions.bellow && this.velocity.y <0) {
+    if ((this.controller.collisions.left || this.controller.collisions.right) && !this.controller.collisions.bellow) {
       this.wallSliding = true;
 
       if (this.velocity.y < wallSlideSpeedMax) {
