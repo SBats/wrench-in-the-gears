@@ -1,31 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 [RequireComponent (typeof (PlayerController))]
 public class PlayerInput : MonoBehaviour {
 
 	private PlayerController player;
+	private int rewiredId = 0;
+	private Player rewiredPlayer;
 
 	// Use this for initialization
 	void Start () {
-		player = GetComponent<PlayerController>();
+		this.rewiredPlayer = ReInput.players.GetPlayer(this.rewiredId);
+		this.player = GetComponent<PlayerController>();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		Vector2 directionalInput = new Vector2(this.rewiredPlayer.GetAxis("Horizontal"), this.rewiredPlayer.GetAxis("Vertical"));
 		this.player.SetDirectionalInput(directionalInput);
 
-		if (Input.GetButtonDown("Jump")) {
+		if (this.rewiredPlayer.GetButtonDown("Jump")) {
 			this.player.OnJumpInputDown();
 		}
 
-		if (Input.GetButtonUp("Jump")) {
+		if (this.rewiredPlayer.GetButtonUp("Jump")) {
 			this.player.OnJumpInputUp();
 		}
 
-		if (Input.GetButtonDown("Action")) {
+		if (this.rewiredPlayer.GetButtonDown("Action")) {
 			this.player.OnActionInputDown();
 		}
 	}
