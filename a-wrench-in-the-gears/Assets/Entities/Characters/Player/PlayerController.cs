@@ -42,10 +42,12 @@ public class PlayerController : MonoBehaviour {
   private UnityAction<RaycastHit2D> collisionsActions;
   private UnityAction<RaycastHit2D> triggerActions;
   private CheckpointController respawnPoint;
+  private LevelController levelController;
 
   private void Start() {
     this.controller = GetComponent<Controller2D>();
     this.spriteController = GetComponentInChildren<SpriteController>();
+    this.levelController = FindObjectOfType<LevelController>();
 
     this.collisionsActions += OnCollision;
     this.triggerActions += OnTrigger;
@@ -213,7 +215,8 @@ public class PlayerController : MonoBehaviour {
     }
     if (hit.collider.tag == "End") {
       CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      this.levelController.LoadNextLevel();
+      // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
       DangerController danger = hit.collider.gameObject.GetComponent<DangerController>();
