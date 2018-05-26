@@ -16,8 +16,11 @@ public class DangerController : MonoBehaviour {
 	}
 
 	private void Start() {
-		this.statusUpdateActions += this.UpdateStatus;
-		this.lever.subscribeToStateChange(UpdateStatus);
+		this.UpdateStatus(this.active);
+		if (this.lever) {
+			this.statusUpdateActions += this.UpdateStatus;
+			this.lever.subscribeToStateChange(UpdateStatus);
+		}
 	}
 
 	public void UpdateStatus(bool status) {
