@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
   public Vector2 wallJumpOff = new Vector2(8.5f, 10f);
   public Vector2 wallLeap = new Vector2(18f, 17f);
 
+  public float deathTimer = 1.0f;
   private float gravity;
   private float maxJumpVelocity;
   private float minJumpVelocity;
@@ -60,40 +61,57 @@ public class PlayerController : MonoBehaviour {
     this.extraJumpVelocity = (2 * this.extrajumpHeight * this.moveSpeed) / this.distanceToJumpApex;
   }
 
-  private void FixedUpdate() {
-    CalculateVelocity();
-    HandleWallSliding();
-
-    if (this.controller.collisions.bellow || this.wallSliding) {
-      this.currentJump = 0;
-    }
-
-    if (this.jumpRequested) {
-      Jump();
-    }
-
-    if (this.cancelJump) {
-      CancelJump();
-    }
-
-    this.controller.Move(this.velocity * Time.deltaTime, this.directionalInput);
-
-    if (this.controller.collisions.above || this.controller.collisions.bellow) {
-      if (this.controller.collisions.slidingDownMaxSlope) {
-        this.velocity.y += this.controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
+  private void Update() {
+    if (this.playerState.dying) {
+      if (this.deathTimer <= 0) {
+        this.Respawn();
       } else {
-        this.velocity.y = 0;
+        this.deathTimer -= Time.deltaTime;
       }
     }
+  }
 
+  private void FixedUpdate() {
+    if (this.playerState.dying) {
+      this.velocity = new Vector2(0, 0);
+      this.playerState.velocity = this.velocity;
+      this.playerState.wallSliding = false;
+      this.playerState.input = new Vector2(0, 0);
+      this.controller.collisions.Reset();
+    } else {
+      CalculateVelocity();
+      HandleWallSliding();
+
+      if (this.controller.collisions.bellow || this.wallSliding) {
+        this.currentJump = 0;
+      }
+
+      if (this.jumpRequested) {
+        Jump();
+      }
+
+      if (this.cancelJump) {
+        CancelJump();
+      }
+
+      this.controller.Move(this.velocity * Time.deltaTime, this.directionalInput);
+
+      if (this.controller.collisions.above || this.controller.collisions.bellow) {
+        if (this.controller.collisions.slidingDownMaxSlope) {
+          this.velocity.y += this.controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
+        } else {
+          this.velocity.y = 0;
+        }
+      }
+
+      this.playerState.collisions = this.controller.collisions;
+      this.playerState.velocity = this.velocity;
+      this.playerState.wallSliding = this.wallSliding;
+      this.playerState.input = this.directionalInput;
+    }
     this.jumpRequested = false;
     this.cancelJump = false;
     this.actionRequested = false;
-
-    this.playerState.collisions = this.controller.collisions;
-    this.playerState.velocity = this.velocity;
-    this.playerState.wallSliding = this.wallSliding;
-    this.playerState.input = this.directionalInput;
     this.spriteController.updateSprite(this.playerState);
   }
 
@@ -114,6 +132,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void Respawn() {
+    this.deathTimer = 1.0f;
     this.playerState.dying = false;
     transform.position = this.respawnPoint.transform.position;
   }
@@ -124,7 +143,6 @@ public class PlayerController : MonoBehaviour {
 
   public void Die() {
     this.playerState.dying = true;
-    this.Respawn();
   }
 
   private void CalculateVelocity() {
