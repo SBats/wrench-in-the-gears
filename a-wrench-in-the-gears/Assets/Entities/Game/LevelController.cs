@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour {
 		this.LoadLevel(this.bonusLevelName);
 	}
 
-	private void LoadLevel(string sceneName) {
+	public void LoadLevel(string sceneName) {
 		// SceneManager.LoadSceneAsync(sceneName);
 		SceneManager.LoadScene(sceneName);
 	}
