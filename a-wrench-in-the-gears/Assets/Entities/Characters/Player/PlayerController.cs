@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour {
   public Vector2 wallJumpClimb = new Vector2(7.5f, 14f);
   public Vector2 wallJumpOff = new Vector2(8.5f, 10f);
   public Vector2 wallLeap = new Vector2(18f, 17f);
+  public float deathTimerDuration = .6f;
 
-  public float deathTimer = 1.0f;
+  private float deathTimer;
   private float gravity;
   private float maxJumpVelocity;
   private float minJumpVelocity;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour {
     this.controller.subscribeToColliderEvent(collisionsActions);
     this.controller.subscribeToTriggerEvent(triggerActions);
 
+    this.deathTimer = this.deathTimerDuration;
     this.gravity = ComputeGravity();
     this.maxJumpVelocity = (2 * this.maxJumpHeight * this.moveSpeed) / this.distanceToJumpApex;
     this.minJumpVelocity = (2 * this.minJumpHeight * this.moveSpeed) / this.distanceToJumpApex;
@@ -132,7 +134,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void Respawn() {
-    this.deathTimer = 1.0f;
+    this.deathTimer = this.deathTimerDuration;
     this.playerState.dying = false;
     transform.position = this.respawnPoint.transform.position;
   }

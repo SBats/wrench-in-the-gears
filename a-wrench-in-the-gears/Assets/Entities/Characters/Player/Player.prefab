@@ -153,6 +153,7 @@ MonoBehaviour:
   wallJumpClimb: {x: 12, y: 18}
   wallJumpOff: {x: 12, y: 16}
   wallLeap: {x: 22, y: 22}
+  deathTimerDuration: 0.6
 --- !u!114 &114444778736921486
 MonoBehaviour:
   m_ObjectHideFlags: 1
