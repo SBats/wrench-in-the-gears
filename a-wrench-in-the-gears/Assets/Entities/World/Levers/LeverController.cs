@@ -16,9 +16,9 @@ public class LeverController : MonoBehaviour {
 		this.onStatusChange = new LeverStatusEvent();
 	}
 
-	private void Update() {
-		Debug.Log("Lever active: " + this.active);
-	}
+	// private void Update() {
+	// 	Debug.Log("Lever active: " + this.active);
+	// }
 
 	private void OnDisable() {
 		this.onStatusChange.RemoveAllListeners();
