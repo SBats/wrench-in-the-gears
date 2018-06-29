@@ -8,6 +8,7 @@ TagManager:
   - End
   - Checkpoint
   - Lever
+  - Pearl
   layers:
   - Default
   - TransparentFX
