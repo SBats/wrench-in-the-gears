@@ -233,6 +233,10 @@ public class PlayerController : MonoBehaviour {
         this.UpdateRespawnPoint(checkpoint);
       }
     }
+    if (hit.collider.tag == "Pearl") {
+      GameObject pearl = hit.collider.gameObject;
+      pearl.SetActive(false);
+    }
     if (hit.collider.tag == "End") {
       CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
       this.levelController.LoadNextLevel();
