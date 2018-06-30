@@ -1,0 +1,269 @@
+fileFormatVersion: 2
+guid: f1271b9b5d93948038f7166fb49ddcef
+timeCreated: 1530384001
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: water-background_0
+    21300002: water-background_1
+    21300004: water-background_2
+    21300006: water-background_3
+    21300008: water-background_4
+    21300010: water-background_5
+    21300012: water-background_6
+    21300014: water-background_7
+    21300016: water-background_8
+    21300018: water-background_9
+    21300020: water-background_10
+    21300022: water-background_11
+    21300024: water-background_12
+    21300026: water-background_13
+    21300028: water-background_14
+    21300030: water-background_15
+    21300032: water-background_16
+    21300034: water-background_17
+    21300036: water-background_18
+    21300038: water-background_19
+    21300040: water-background_20
+    21300042: water-background_21
+    21300044: water-background_22
+    21300046: water-background_23
+    21300048: water-background_24
+    21300050: water-background_25
+    21300052: water-background_26
+    21300054: water-background_27
+    21300056: water-background_28
+    21300058: water-background_29
+    21300060: water-background_30
+    21300062: water-background_31
+    21300064: water-background_32
+    21300066: water-background_33
+    21300068: water-background_34
+    21300070: water-background_35
+    21300072: water-background_36
+    21300074: water-background_37
+    21300076: water-background_38
+    21300078: water-background_39
+    21300080: water-background_40
+    21300082: water-background_41
+    21300084: water-background_42
+    21300086: water-background_43
+    21300088: water-background_44
+    21300090: water-background_45
+    21300092: water-background_46
+    21300094: water-background_47
+    21300096: water-background_48
+    21300098: water-background_49
+    21300100: water-background_50
+    21300102: water-background_51
+    21300104: water-background_52
+    21300106: water-background_53
+    21300108: water-background_54
+    21300110: water-background_55
+    21300112: water-background_56
+    21300114: water-background_57
+    21300116: water-background_58
+    21300118: water-background_59
+    21300120: water-background_60
+    21300122: water-background_61
+    21300124: water-background_62
+    21300126: water-background_63
+    21300128: water-background_64
+    21300130: water-background_65
+    21300132: water-background_66
+    21300134: water-background_67
+    21300136: water-background_68
+    21300138: water-background_69
+    21300140: water-background_70
+    21300142: water-background_71
+    21300144: water-background_72
+    21300146: water-background_73
+    21300148: water-background_74
+    21300150: water-background_75
+    21300152: water-background_76
+    21300154: water-background_77
+    21300156: water-background_78
+    21300158: water-background_79
+    21300160: water-background_80
+    21300162: water-background_81
+    21300164: water-background_82
+    21300166: water-background_83
+    21300168: water-background_84
+    21300170: water-background_85
+    21300172: water-background_86
+    21300174: water-background_87
+    21300176: water-background_88
+    21300178: water-background_89
+    21300180: water-background_90
+    21300182: water-background_91
+    21300184: water-background_92
+    21300186: water-background_93
+    21300188: water-background_94
+    21300190: water-background_95
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 16
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: water-background_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: water-background_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: water-background_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: water-background_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
