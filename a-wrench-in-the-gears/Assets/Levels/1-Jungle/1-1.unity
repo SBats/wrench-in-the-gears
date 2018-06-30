@@ -599,11 +599,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9cd9a948d0264319b6a64f575deebc7, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &629555718 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1632082504864776, guid: 60f12bf316bc34a8f80cd6f4dcc5e468,
-    type: 2}
-  m_PrefabInternal: {fileID: 722516389}
 --- !u!4 &684255342 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4764903424353944, guid: b94b5b6910d5a4f8b949f64b36cf52de,
@@ -674,15 +669,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalRotation.x
@@ -707,7 +702,7 @@ Prefab:
     - target: {fileID: 20977695474801792, guid: 60f12bf316bc34a8f80cd6f4dcc5e468,
         type: 2}
       propertyPath: orthographic size
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 20977695474801792, guid: 60f12bf316bc34a8f80cd6f4dcc5e468,
         type: 2}
@@ -929,7 +924,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 254ac50f3a36c472d93a69fd65e9f9e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -951,8 +946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71e0e73c628f42c5a887a0e10c05d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refObject: {fileID: 629555718}
-  smoothingTime: 0.1
+  refObject: {fileID: 112280741}
+  reverseX: 1
+  reverseY: 0
   horizontalDependent: 1
   verticalDependent: 0
   horizontalOffset: 0
@@ -78008,8 +78004,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71e0e73c628f42c5a887a0e10c05d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refObject: {fileID: 629555718}
-  smoothingTime: 0.1
+  refObject: {fileID: 112280741}
+  reverseX: 1
+  reverseY: 0
   horizontalDependent: 1
   verticalDependent: 0
   horizontalOffset: 0
@@ -78049,7 +78046,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -9
   m_Sprite: {fileID: 21300000, guid: ef1365601ddb0457e9f6bd7d8a3a5760, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
