@@ -9,11 +9,11 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void StartGame() {
-		this.levelController.LoadLevel("1-1");
+		this.levelController.LoadLevel(1);
 	}
 
 	public void ReturnToMainMenu() {
-		this.levelController.LoadLevel("main-menu");
+		this.levelController.LoadLevel(1);
 	}
 
 	public void ExitGame() {
