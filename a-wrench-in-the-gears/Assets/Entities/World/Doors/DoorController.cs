@@ -23,6 +23,15 @@ public class DoorController : MonoBehaviour {
 
 	public void UpdateStatus(bool status) {
 		this.open = status;
+		this.updateChildrenStatus(status);
 		this.animator.SetBool("open", status);
+	}
+
+	private void updateChildrenStatus(bool active) {
+		//Assuming parent is the parent game object
+		for(int i=0; i< this.transform.childCount; i++) {
+			var child = this.transform.GetChild(i).gameObject;
+			if(child != null) child.SetActive(active);
+		}
 	}
 }

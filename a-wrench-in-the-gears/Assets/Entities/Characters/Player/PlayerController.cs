@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour {
       GameObject pearl = hit.collider.gameObject;
       pearl.SetActive(false);
     }
-    if (hit.collider.tag == "End") {
+    if (hit.collider.tag == "End" && this.actionRequested) {
       CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
       this.levelController.LoadNextLevel();
       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
