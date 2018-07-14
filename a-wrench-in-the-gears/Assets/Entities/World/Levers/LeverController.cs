@@ -16,6 +16,10 @@ public class LeverController : MonoBehaviour {
 		this.onStatusChange = new LeverStatusEvent();
 	}
 
+	private void Start() {
+		this.animator.SetBool("status", this.active);
+	}
+
 	// private void Update() {
 	// 	Debug.Log("Lever active: " + this.active);
 	// }
