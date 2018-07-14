@@ -233,9 +233,7 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -6, y: 8}
-        - {x: -6, y: 1}
-        - {x: -5, y: 1}
-        - {x: -5, y: -8}
+        - {x: -6, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
@@ -272,9 +270,7 @@ TextureImporter:
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 5, y: -8}
-        - {x: 5, y: 1}
-        - {x: 6, y: 1}
+        - {x: 6, y: -8}
         - {x: 6, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -362,8 +358,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: 8}
-        - {x: -4, y: -8}
+      - - {x: -6, y: 8}
+        - {x: -6, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
@@ -398,8 +394,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 5, y: -8}
-        - {x: 5, y: 8}
+      - - {x: 6, y: -8}
+        - {x: 6, y: 8}
         - {x: -8, y: 8}
         - {x: -8, y: -8}
       tessellationDetail: 0
@@ -488,9 +484,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: 8}
-        - {x: -4, y: -6}
-        - {x: 8, y: -6}
+      - - {x: -6, y: 8}
+        - {x: -6, y: -7}
+        - {x: 8, y: -7}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -507,8 +503,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: 8, y: -6}
+        - {x: -8, y: -7}
+        - {x: 8, y: -7}
         - {x: 8, y: 8}
       tessellationDetail: 0
     - serializedVersion: 2
@@ -524,10 +520,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 5, y: 8}
+      - - {x: 6, y: 8}
         - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: 5, y: -6}
+        - {x: -8, y: -7}
+        - {x: 6, y: -7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: temple-tiles_21

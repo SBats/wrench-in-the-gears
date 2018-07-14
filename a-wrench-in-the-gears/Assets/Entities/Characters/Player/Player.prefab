@@ -152,7 +152,7 @@ MonoBehaviour:
   wallStickTime: 0.25
   wallJumpClimb: {x: 12, y: 18}
   wallJumpOff: {x: 12, y: 16}
-  wallLeap: {x: 22, y: 22}
+  wallLeap: {x: 30, y: 18}
   deathTimerDuration: 0.6
 --- !u!114 &114444778736921486
 MonoBehaviour:
