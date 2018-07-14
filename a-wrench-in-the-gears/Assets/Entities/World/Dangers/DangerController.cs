@@ -13,10 +13,10 @@ public class DangerController : MonoBehaviour {
 
 	private void Awake() {
 		this.animator = GetComponent<Animator>();
+		this.UpdateStatus(this.active);
 	}
 
 	private void Start() {
-		this.UpdateStatus(this.active);
 		if (this.lever) {
 			this.statusUpdateActions += this.UpdateStatus;
 			this.lever.subscribeToStateChange(UpdateStatus);
