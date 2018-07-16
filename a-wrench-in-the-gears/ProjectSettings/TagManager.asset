@@ -9,6 +9,8 @@ TagManager:
   - Checkpoint
   - Lever
   - Pearl
+  - SawProjectile
+  - SawStopper
   layers:
   - Default
   - TransparentFX
