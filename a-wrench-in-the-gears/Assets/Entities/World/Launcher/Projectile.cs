@@ -11,9 +11,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log(other.gameObject.tag);
 		foreach (GameObject stopper in stoppers) {
-			Debug.Log(stopper.tag);
 			if (other.gameObject.tag == stopper.tag) {
 				gameObject.SetActive(false);
 			}
