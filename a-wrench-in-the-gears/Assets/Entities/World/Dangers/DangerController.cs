@@ -23,6 +23,10 @@ public class DangerController : MonoBehaviour {
 		}
 	}
 
+	private void OnEnable() {
+		this.UpdateStatus(this.active);
+	}
+
 	public void UpdateStatus(bool status) {
 		this.active = status;
 		this.animator.SetBool("active", status);
