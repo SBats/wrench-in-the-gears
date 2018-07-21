@@ -30,8 +30,6 @@ public class TriggerController : MonoBehaviour {
 	}
 
 	public void subscribeToStateChange(UnityAction<bool> callback) {
-		Debug.Log(this);
-		Debug.Log(callback);
 		this.onStatusChange.AddListener(callback);
 	}
 
