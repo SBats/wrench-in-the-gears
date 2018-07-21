@@ -237,10 +237,12 @@ public class PlayerController : MonoBehaviour {
       GameObject pearl = hit.collider.gameObject;
       pearl.SetActive(false);
     }
-    if (hit.collider.tag == "End" && this.actionRequested) {
+    if (hit.collider.tag == "End") {
       CheckpointController checkpoint = hit.collider.gameObject.GetComponent<CheckpointController>();
-      this.levelController.LoadNextLevel();
-      // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      if (!checkpoint.interactive || this.actionRequested) {
+        this.levelController.LoadNextLevel();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      }
     }
     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Dangers")) {
       DangerController danger = hit.collider.gameObject.GetComponent<DangerController>();

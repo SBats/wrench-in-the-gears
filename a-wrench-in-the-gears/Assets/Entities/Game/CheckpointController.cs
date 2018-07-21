@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour {
 
+	public bool interactive = false;
 	public bool active = true;
 
 	public void Enable() {
