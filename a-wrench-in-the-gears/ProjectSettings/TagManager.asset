@@ -11,6 +11,7 @@ TagManager:
   - Pearl
   - SawProjectile
   - SawStopper
+  - OneWay
   layers:
   - Default
   - TransparentFX
