@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Levels/1-Jungle/1-1.unity
+    path: Assets/Levels/1-beach/1-1.unity
     guid: 5b75d237bac5b405980a7c95c2210d97
   - enabled: 1
-    path: Assets/Levels/1-Jungle/1-2.unity
+    path: Assets/Levels/1-beach/1-2.unity
     guid: ea51d672ad0c945c698dbd28e91fa612
