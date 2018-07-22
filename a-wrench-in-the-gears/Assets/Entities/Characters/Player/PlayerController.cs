@@ -136,7 +136,12 @@ public class PlayerController : MonoBehaviour {
   public void Respawn() {
     this.deathTimer = this.deathTimerDuration;
     this.playerState.dying = false;
-    transform.position = this.respawnPoint.transform.position;
+
+    transform.position = new Vector3(
+      this.respawnPoint.transform.position.x,
+      this.respawnPoint.transform.position.y + controller.collider.size.y / 2,
+      this.respawnPoint.transform.position.z
+    );
   }
 
   public void UpdateRespawnPoint(CheckpointController newPoint) {
