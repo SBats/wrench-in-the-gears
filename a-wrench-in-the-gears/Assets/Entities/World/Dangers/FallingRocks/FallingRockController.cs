@@ -4,29 +4,27 @@ using UnityEngine.Events;
 using UnityEngine;
 
 public class FallingRockController : MonoBehaviour {
-
-	public float fallSpeed;
 	public GameObject rock;
+	public GameObject hitbox;
 	public GameObject trigger;
+	public float fallDuration;
+	public AnimationCurve animationCurve;
 	public bool reversed = false;
 	public bool active = true;
 
-	private float nextFall = 0;
 	private Vector3 top;
 	private Vector3 bottom;
 	private Vector3 start;
 	private Vector3 end;
-	private BoxCollider2D hitBox;
+	private BoxCollider2D hitBoxCollider;
 	private BoxCollider2D movementContainer;
 	private TriggerController triggerController;
-	private bool triggerStatus;
+	public bool triggerStatus;
 	private bool moving = false;
-	private Vector3 currentTarget;
-	private Vector3 velocity = Vector3.zero;
 
 	private void Awake() {
 		this.movementContainer = GetComponent<BoxCollider2D>();
-		this.hitBox = this.rock.GetComponentInChildren<BoxCollider2D>();
+		this.hitBoxCollider = this.hitbox.GetComponent<BoxCollider2D>();
 		this.triggerController = this.trigger.GetComponent<TriggerController>();
 	}
 
@@ -47,13 +45,16 @@ public class FallingRockController : MonoBehaviour {
 		this.ToggleHitBox(this.triggerStatus);
 	}
 
-	private void Update() {
-		if (this.active) {
-			if (!this.moving) {
-				this.currentTarget = this.triggerStatus ? this.end : this.start;
-				this.ToggleHitBox(this.triggerStatus);
+	private void FixedUpdate() {
+		if (this.active && !this.moving) {
+			if (this.triggerStatus && this.rock.transform.position == this.start) {
+				this.ToggleHitBox(this.end == this.bottom);
+				StartCoroutine(AnimatePosition(this.rock.transform.position, this.end, fallDuration));
 			}
-			this.Move();
+			if (!this.triggerStatus && this.rock.transform.position == this.end) {
+				this.ToggleHitBox(this.start == this.bottom);
+				StartCoroutine(AnimatePosition(this.rock.transform.position, this.start, fallDuration));
+			}
 		}
 	}
 
@@ -62,16 +63,22 @@ public class FallingRockController : MonoBehaviour {
 	}
 
 	public void ToggleHitBox(bool status) {
-		this.hitBox.enabled = this.reversed ? !status : status;
+		this.hitBoxCollider.enabled = status;
 	}
 
-	private void Move() {
-		if ((this.currentTarget == this.top && this.rock.transform.position.y >= this.currentTarget.y - .1)
-			|| (this.currentTarget == this.bottom && this.rock.transform.position.y <= this.currentTarget.y + .1)) {
-			this.moving = false;
-		} else {
-			this.moving = true;
-			this.rock.transform.position = Vector3.SmoothDamp(this.rock.transform.position, this.currentTarget, ref this.velocity, this.fallSpeed);
+	IEnumerator AnimatePosition(Vector3 origin, Vector3 target, float duration) {
+		float elapsedTime = 0f;
+
+		this.moving = true;
+		while (elapsedTime <= duration) {
+			elapsedTime += Time.deltaTime;
+
+			float animationProgression = Mathf.Clamp01(elapsedTime / duration);
+			float curvedProgression = this.animationCurve.Evaluate(animationProgression);
+			this.rock.transform.position = Vector3.Lerp(origin, target, curvedProgression);
+
+			yield return null;
 		}
+		this.moving = false;
 	}
 }
