@@ -23,12 +23,14 @@ public class FallingRockController : MonoBehaviour {
 	private TriggerController triggerController;
 	private Vector3 currentTarget;
 	public bool triggerStatus;
-	private bool moving = false;
+	// private bool moving = false;
+	private CoroutineMover mover;
 
 	private void Awake() {
 		this.movementContainer = GetComponent<BoxCollider2D>();
 		this.hitBoxCollider = this.hitbox.GetComponent<BoxCollider2D>();
 		this.triggerController = this.trigger.GetComponent<TriggerController>();
+		this.mover = new CoroutineMover(this.animationCurve, this.rock);
 	}
 
 	private void Start() {
@@ -54,7 +56,7 @@ public class FallingRockController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if (this.active && !this.autoFall && !this.moving) {
+		if (this.active && !this.autoFall && !this.mover.moving) {
 			if (this.triggerStatus && this.rock.transform.position == this.start) {
 				this.currentTarget = this.end;
 				this.StartMovement();
@@ -77,26 +79,27 @@ public class FallingRockController : MonoBehaviour {
 
 	public void StartMovement() {
 		this.ToggleHitBox(this.currentTarget == this.bottom);
-		StartCoroutine(this.AnimatePosition(this.rock.transform.position, this.currentTarget, fallDuration));
+		StartCoroutine(this.mover.Move(this.rock.transform.position, this.currentTarget, fallDuration));
+		// StartCoroutine(this.AnimatePosition(this.rock.transform.position, this.currentTarget, fallDuration));
 	}
 
 	private void ToggleHitBox(bool status) {
 		this.hitBoxCollider.enabled = status;
 	}
 
-	IEnumerator AnimatePosition(Vector3 origin, Vector3 target, float duration) {
-		float elapsedTime = 0f;
+	// IEnumerator AnimatePosition(Vector3 origin, Vector3 target, float duration) {
+	// 	float elapsedTime = 0f;
 
-		this.moving = true;
-		while (elapsedTime <= duration) {
-			elapsedTime += Time.deltaTime;
+	// 	this.moving = true;
+	// 	while (elapsedTime <= duration) {
+	// 		elapsedTime += Time.deltaTime;
 
-			float animationProgression = Mathf.Clamp01(elapsedTime / duration);
-			float curvedProgression = this.animationCurve.Evaluate(animationProgression);
-			this.rock.transform.position = Vector3.Lerp(origin, target, curvedProgression);
+	// 		float animationProgression = Mathf.Clamp01(elapsedTime / duration);
+	// 		float curvedProgression = this.animationCurve.Evaluate(animationProgression);
+	// 		this.rock.transform.position = Vector3.Lerp(origin, target, curvedProgression);
 
-			yield return null;
-		}
-		this.moving = false;
-	}
+	// 		yield return null;
+	// 	}
+	// 	this.moving = false;
+	// }
 }
