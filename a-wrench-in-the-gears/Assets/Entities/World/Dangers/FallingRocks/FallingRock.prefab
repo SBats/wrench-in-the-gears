@@ -327,33 +327,41 @@ MonoBehaviour:
   rock: {fileID: 1802563180435732}
   hitbox: {fileID: 1069428666642594}
   trigger: {fileID: 1408690406434246}
-  fallDuration: 0.3
+  fallDuration: 0.6
   animationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.49954385
-      value: 0.09546079
-      inSlope: 0.10930352
-      outSlope: 0.10930352
+      time: 0.4004831
+      value: 0.09870101
+      inSlope: 0.0047642183
+      outSlope: 0.0047642183
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.84739304
+      value: 0.99801844
+      inSlope: 0.63152254
+      outSlope: 0.63152254
       tangentMode: 0
     - serializedVersion: 2
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   reversed: 0
   active: 1
+  autoFall: 1
+  startDelay: 0
   triggerStatus: 0
 --- !u!114 &114736227783697562
 MonoBehaviour:
