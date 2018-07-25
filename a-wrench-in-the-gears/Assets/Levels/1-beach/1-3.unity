@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdb7ffb5f3784523bf3d36a26f5ad07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchSpeed: 1
+  punchSpeed: 0.5
+  punchPause: 0.2
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -175,6 +176,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  hitboxContainer: {fileID: 539393720}
 --- !u!1 &100583903
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +342,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: 0, y: -0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -351,7 +353,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 0.3}
   m_EdgeRadius: 0
 --- !u!1001 &560029083
 Prefab:
@@ -502,7 +504,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalPosition.y
@@ -510,7 +512,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4522564971124216, guid: 60f12bf316bc34a8f80cd6f4dcc5e468, type: 2}
       propertyPath: m_LocalRotation.x
@@ -535,7 +537,7 @@ Prefab:
     - target: {fileID: 20977695474801792, guid: 60f12bf316bc34a8f80cd6f4dcc5e468,
         type: 2}
       propertyPath: orthographic size
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 20977695474801792, guid: 60f12bf316bc34a8f80cd6f4dcc5e468,
         type: 2}
@@ -804,7 +806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdb7ffb5f3784523bf3d36a26f5ad07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchSpeed: 1
+  punchSpeed: 0.5
+  punchPause: 0.2
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -823,6 +826,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  hitboxContainer: {fileID: 1873365634}
 --- !u!1 &1716961129
 GameObject:
   m_ObjectHideFlags: 0
@@ -51986,7 +51990,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: 0, y: -0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -51997,7 +52001,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 0.3}
   m_EdgeRadius: 0
 --- !u!1001 &1894390621
 Prefab:
@@ -52081,6 +52085,7 @@ MonoBehaviour:
   head: {fileID: 1922304433}
   leftHand: {fileID: 22513781}
   rightHand: {fileID: 1633838071}
+  idleCicleDuration: 3
 --- !u!4 &1903086505
 Transform:
   m_ObjectHideFlags: 0
