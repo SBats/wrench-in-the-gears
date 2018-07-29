@@ -49,7 +49,7 @@ public class MovingPlatformController : RaycastController {
 	private void Update() {
 		UpdateRaycastOrigins();
 
-		Vector3 velocity = CalculatePassengerMovement();
+		Vector3 velocity = CalculateVelocity();
 
 		CalculatePassengerMovement(velocity);
 
@@ -67,7 +67,7 @@ public class MovingPlatformController : RaycastController {
 		return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1 - x, a));
 	}
 
-	private Vector3 CalculatePassengerMovement() {
+	private Vector3 CalculateVelocity() {
 
 		if (Time.time < this.nextMoveTime) {
 			return Vector3.zero;

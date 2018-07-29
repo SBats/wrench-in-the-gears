@@ -14,7 +14,7 @@ public class CoroutineMover {
 		this._target = target;
 	}
 
-	public IEnumerator Move(Vector3 start, Vector3 end, float duration) {
+	public IEnumerator Move(Vector3 start, Vector3 end, float duration, Action<Vector3> callback = null) {
 		float elapsedTime = 0f;
 
 		this.moving = true;
@@ -23,8 +23,12 @@ public class CoroutineMover {
 
 			float animationProgression = Mathf.Clamp01(elapsedTime / duration);
 			float curvedProgression = this._animationCurve.Evaluate(animationProgression);
-			this._target.transform.position = Vector3.Lerp(start, end, curvedProgression);
-
+			Vector3 oldPosition = this._target.transform.position;
+			Vector3 newPosition = Vector3.Lerp(start, end, curvedProgression);
+			this._target.transform.position = newPosition;
+			if (callback != null) {
+				callback(newPosition - oldPosition);
+			}
 			yield return null;
 		}
 		this.moving = false;
