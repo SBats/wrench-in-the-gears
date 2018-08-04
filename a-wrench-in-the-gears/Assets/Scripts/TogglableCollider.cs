@@ -8,11 +8,13 @@ public class TogglableCollider : MonoBehaviour {
 	public LeverController lever;
 
 	private Collider2D targetCollider;
+	private Animator _animator;
 
 	private UnityAction<bool> statusUpdateActions;
 
 	private void Awake() {
 		this.targetCollider = GetComponent<Collider2D>();
+		this._animator = GetComponent<Animator>();
 		this.UpdateStatus(this.active);
 	}
 
@@ -30,5 +32,8 @@ public class TogglableCollider : MonoBehaviour {
 	public void UpdateStatus(bool status) {
 		this.targetCollider.enabled = status;
 		this.active = status;
+		if (this._animator) {
+			this._animator.SetBool("active", status);
+		}
 	}
 }
